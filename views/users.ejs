@@ -10,9 +10,28 @@
 </head>
 
 <body>
-  	<% include common/header.ejs %>
-	<% include common/footer.ejs %>
-	<script src="javascripts/jquery-2.1.4.min.js"></script>
+  <% include common/header.ejs %>
+    <% include common/footer.ejs %>
+      <script src="javascripts/jquery-2.1.4.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        userArticle(1);
+      });
+      //查询用户文章
+      function userArticle(user_id) {
+        $.ajax({
+          url: '/users/userArticle',
+          data: { user_id: user_id },
+          type: 'post',
+          success: function(json) {
+            console.log(json);
+          },
+          error: function() {
+            console.log("连接失败");
+          }
+        });
+      }
+      </script>
 </body>
 
 </html>

@@ -12,19 +12,71 @@
 <body>
   <% include common/header.ejs %>
     <ul>
-      <li class="item1"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item2"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item3"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item4"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item5"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item6"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item7"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item8"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item9"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
-      <li class="item10"><img src="http://img5.imgtn.bdimg.com/it/u=314278249,2280566752&fm=26&gp=0.jpg" alt=""></li>
+      <li class="btn" onclick="getArticles(0)">全部</li>
+      <li class="btn" onclick="getArticles(1)">心情</li>
+      <li class="btn" onclick="getArticles(2)">技术</li>
     </ul>
+    <div class="favourite" onclick="favouriteArticle(1)">点赞</div>
+    <div class="favourite" onclick="getArticle(1)">详情</div>
     <% include common/footer.ejs %>
-    <script src="javascripts/jquery-2.1.4.min.js"></script>
+      <script src="javascripts/jquery-2.1.4.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: '/articles',
+          data: { limit: 2, nowPage: 1 },
+          type: 'post',
+          success: function(json) {
+            console.log(json);
+          },
+          error: function() {
+            console.log("连接失败");
+          }
+        });
+      });
+      //获取不同类型的文章
+      function getArticles(type) {
+        $.ajax({
+          url: '/selectArticles',
+          data: { limit: 2, nowPage: 1, type: type },
+          type: 'post',
+          success: function(json) {
+            console.log(json);
+          },
+          error: function() {
+            console.log("连接失败");
+          }
+        });
+      }
+      //点赞
+      function favouriteArticle(id) {
+        $.ajax({
+          url: '/favourite',
+          data: { id: id },
+          type: 'post',
+          success: function(json) {
+            console.log(json);
+          },
+          error: function() {
+            console.log("连接失败");
+          }
+        });
+      }
+      //查询文章详情
+      function getArticle(id) {
+        $.ajax({
+          url: '/article',
+          data: { id: id },
+          type: 'post',
+          success: function(json) {
+            console.log(json);
+          },
+          error: function() {
+            console.log("连接失败");
+          }
+        });
+      }
+      </script>
 </body>
 
 </html>
