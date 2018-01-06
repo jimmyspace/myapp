@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 //全部文章
-router.post('/articles', function(req, res, next) {
+router.post('/api/articles', function(req, res, next) {
   articleHandler.queryArticle(req, res, next);
 });
 //分类筛选

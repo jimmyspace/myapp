@@ -16,18 +16,30 @@
       <li class="btn" onclick="getArticles(1)">心情</li>
       <li class="btn" onclick="getArticles(2)">技术</li>
     </ul>
-    <div class="favourite" onclick="favouriteArticle(1)">点赞</div>
-    <div class="favourite" onclick="getArticle(1)">详情</div>
+    <ul class="content" id="content">
+      
+    </ul>
     <% include common/footer.ejs %>
       <script src="javascripts/jquery-2.1.4.min.js"></script>
       <script>
+      var articles=[]
       $(document).ready(function() {
         $.ajax({
-          url: '/articles',
+          url: "/api/articles",
           data: { limit: 2, nowPage: 1 },
-          type: 'post',
+          type: "post",
           success: function(json) {
-            console.log(json);
+            articles = json.list;
+            var html = "";
+            if(articles.length>0){
+              for (var i = articles.length - 1; i >= 0; i--) {
+                html+="<li><div>标题："+ articles[i].title +"</div>"+
+                "<div>内容："+articles[i].content+"</div>"+
+                "<div class='favourite' onclick='favouriteArticle("+articles[i].id+")'>"+articles[i].favourite+"点赞</div>"+
+                "<div class='favourite' onclick='getArticle("+articles[i].user_id+")'>详情</div></li>"
+              }
+            }
+            $("#content").append(html);
           },
           error: function() {
             console.log("连接失败");
@@ -37,9 +49,9 @@
       //获取不同类型的文章
       function getArticles(type) {
         $.ajax({
-          url: '/selectArticles',
+          url: "/selectArticles",
           data: { limit: 2, nowPage: 1, type: type },
-          type: 'post',
+          type: "post",
           success: function(json) {
             console.log(json);
           },
@@ -51,9 +63,9 @@
       //点赞
       function favouriteArticle(id) {
         $.ajax({
-          url: '/favourite',
+          url: "/favourite",
           data: { id: id },
-          type: 'post',
+          type: "post",
           success: function(json) {
             console.log(json);
           },
@@ -63,11 +75,11 @@
         });
       }
       //查询文章详情
-      function getArticle(id) {
+      function getArticle(user_id) {
         $.ajax({
-          url: '/article',
-          data: { id: id },
-          type: 'post',
+          url: "/article",
+          data: { user_id: user_id },
+          type: "post",
           success: function(json) {
             console.log(json);
           },

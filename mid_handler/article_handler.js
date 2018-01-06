@@ -217,6 +217,7 @@ module.exports = {
           connection.release();
           return;
         }
+        console.log(result);
         if (result.length > 0) {
           var article = result[0];
           result = {
@@ -257,6 +258,7 @@ module.exports = {
           connection.release();
           return;
         }
+        console.log(req.body.user_id);
         if (result.length > 0) {
           result.forEach(function(item) {
             item.content = item.content.slice(0, 1);
