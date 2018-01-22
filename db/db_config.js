@@ -1,3 +1,4 @@
+ console.log(process.env.NODE_ENV);
  module.exports = {
    mysql: {
      host: '127.0.0.1',
