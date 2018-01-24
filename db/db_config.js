@@ -8,7 +8,8 @@
    multipleStatements: true //可以执行多条语句
  }
  const product_config = {
-   host: '98.142.142.208',
+   //host: '98.142.142.208',
+   host: '127.0.0.1',
    user: 'root',
    password: 'root',
    database: 'test',
