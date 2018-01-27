@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('users', { title: '个人中心' });
 });
 
-router.post('/userArticle', function(req, res, next) {
+router.post('/api/userArticle', function(req, res, next) {
 	console.log(req.body.user_id);
   articleHandler.queryArticleByUserId(req, res, next);
 })

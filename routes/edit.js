@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('edit', { title: '编辑' });
 });
 //发表文章
-router.post('/edit', function(req, res, next) {
+router.post('/api/edit', function(req, res, next) {
   if (!req.session.user) {
     res.send({
       code: -200,

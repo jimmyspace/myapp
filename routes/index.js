@@ -11,15 +11,15 @@ router.post('/api/articles', function(req, res, next) {
   articleHandler.queryArticle(req, res, next);
 });
 //分类筛选
-router.post('/selectArticles', function(req, res, next) {
+router.post('/api/selectArticles', function(req, res, next) {
   articleHandler.queryArticleByType(req, res, next);
 });
 //点赞
-router.post('/favourite',function(req,res,next){
+router.post('/api/favourite',function(req,res,next){
 	articleHandler.updateFavorite(req, res, next);
 });
 //查询文章详情
-router.post('/article',function(req,res,next){
+router.post('/api/article',function(req,res,next){
 	articleHandler.queryArticleByUserId(req, res, next);
 });
 
