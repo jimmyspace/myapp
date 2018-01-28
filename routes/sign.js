@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 //注册接口，邮箱和密码
-router.post('/api/signUp', function(req, res, next) {
+router.post('/signUp', function(req, res, next) {
   if (!isEmail(req.body.email)) {
     res.send({
       code: -200,
@@ -36,7 +36,7 @@ router.post('/api/signUp', function(req, res, next) {
 });
 
 //登录接口
-router.post('/api/signIn', function(req, res, next) {
+router.post('/signIn', function(req, res, next) {
   if (!isEmail(req.body.email)) {
     res.send({
       code: -200,
@@ -53,7 +53,7 @@ router.post('/api/signIn', function(req, res, next) {
 });
 
 //忘记密码接口
-router.post('/api/forget', function(req, res, next) {
+router.post('/forget', function(req, res, next) {
   if (!isEmail(req.body.email)) {
     res.send({
       code: -200,
@@ -76,7 +76,7 @@ router.post('/api/forget', function(req, res, next) {
   }
 });
 //发送邮箱验证吗
-router.post('/api/sendEmail', function(req, res, next) {
+router.post('/sendEmail', function(req, res, next) {
   if (!isEmail(req.body.email)) {
     res.send({
       code: -200,
