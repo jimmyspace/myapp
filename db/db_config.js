@@ -1,4 +1,5 @@
-const develop_config = {
+
+ const mysql = {
    host: '127.0.0.1',
    user: 'root',
    password: 'root',
@@ -6,4 +7,6 @@ const develop_config = {
    port: 3306,
    multipleStatements: true //可以执行多条语句
  }
- module.exports = develop_config;
+ module.exports = {
+   mysql: mysql
+ };
